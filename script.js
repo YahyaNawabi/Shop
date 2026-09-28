@@ -1,608 +1,605 @@
+/* =========================
+   PRODUCT SEARCH
+========================= */
 
-  /* PRODUCT SEARCH */
+const productCards = Array.from(
+  document.querySelectorAll(".product")
+);
 
-  const productCards =
-    Array.from(
-      document.querySelectorAll(".product")
-    );
+const searchInput =
+  document.getElementById("searchInput");
 
-  const searchInput =
-    document.getElementById("searchInput");
+const filters =
+  document.getElementById("filters");
 
-  const filters =
-    document.getElementById("filters");
+const emptyState =
+  document.getElementById("emptyState");
 
-  const emptyState =
-    document.getElementById("emptyState");
-
-
-  let activeFilter = "all";
-
-
-  function renderProducts() {
-
-    const query =
-      searchInput.value
-        .trim()
-        .toLowerCase();
-
-    let visible = 0;
+let activeFilter = "all";
 
 
-    productCards.forEach(card => {
+function renderProducts() {
 
-      const matchesFilter =
-        activeFilter === "all" ||
-        card.dataset.category === activeFilter;
+  const query =
+    searchInput.value
+      .trim()
+      .toLowerCase();
 
-
-      const matchesSearch =
-        card.dataset.name
-          .toLowerCase()
-          .includes(query) ||
-
-        card.dataset.description
-          .toLowerCase()
-          .includes(query);
+  let visible = 0;
 
 
-      const show =
-        matchesFilter &&
-        matchesSearch;
+  productCards.forEach((card) => {
+
+    const matchesFilter =
+      activeFilter === "all" ||
+      card.dataset.category === activeFilter;
 
 
-      card.style.display =
-        show ? "" : "none";
+    const matchesSearch =
+      card.dataset.name
+        .toLowerCase()
+        .includes(query) ||
+
+      card.dataset.description
+        .toLowerCase()
+        .includes(query);
 
 
-      if (show) {
-        visible++;
-      }
-
-    });
+    const show =
+      matchesFilter &&
+      matchesSearch;
 
 
-    emptyState.style.display =
-      visible ? "none" : "block";
-
-  }
+    card.style.display =
+      show ? "" : "none";
 
 
-  /* FILTER BUTTONS */
-
-  filters.addEventListener(
-    "click",
-    event => {
-
-      const button =
-        event.target.closest("[data-filter]");
-
-      if (!button) return;
-
-
-      activeFilter =
-        button.dataset.filter;
-
-
-      document
-        .querySelectorAll(".filter")
-        .forEach(item =>
-          item.classList.remove("active")
-        );
-
-
-      button.classList.add("active");
-
-
-      renderProducts();
-
+    if (show) {
+      visible++;
     }
-  );
+
+  });
 
 
-  searchInput.addEventListener(
-    "input",
-    renderProducts
-  );
+  emptyState.style.display =
+    visible ? "none" : "block";
+}
 
 
-  /* MODAL */
+/* =========================
+   CATEGORY FILTERS
+========================= */
 
-  const modalWrap =
-    document.getElementById("modalWrap");
+filters.addEventListener(
+  "click",
+  (event) => {
 
-  const quantity =
-    document.getElementById("quantity");
+    const button =
+      event.target.closest("[data-filter]");
 
-  const modalTotal =
-    document.getElementById("modalTotal");
-
-
-  let selectedProduct = null;
-
-  let selectedChannel = "whatsapp";
+    if (!button) return;
 
 
-  /* UPDATE TOTAL */
-
-  function updateTotal() {
-
-    if (!selectedProduct) return;
-
-
-    const qty =
-      Math.max(
-        1,
-        Math.min(
-          99,
-          Number(quantity.value) || 1
-        )
-      );
-
-
-    quantity.value = qty;
-
-
-    modalTotal.textContent =
-      (
-        Number(selectedProduct.price) *
-        qty
-      ).toLocaleString() +
-      " AFN";
-
-  }
-
-
-  /* OPEN PRODUCT */
-
-  function openModal(card) {
-
-    selectedProduct =
-      card.dataset;
-
-
-    document.getElementById(
-      "modalIcon"
-    ).textContent =
-      selectedProduct.icon;
-
-
-    document.getElementById(
-      "modalTitle"
-    ).textContent =
-      selectedProduct.name;
-
-
-    document.getElementById(
-      "modalDescription"
-    ).textContent =
-      selectedProduct.description;
-
-
-    quantity.value = 1;
-
-
-    document.getElementById(
-      "customerName"
-    ).value = "";
-
-
-    document.getElementById(
-      "customerPhone"
-    ).value = "";
-
-
-    document.getElementById(
-      "productSize"
-    ).value = "";
-
-
-    document.getElementById(
-      "productColor"
-    ).value = "";
-
-
-    document.getElementById(
-      "deliveryAddress"
-    ).value = "";
-
-
-    document.getElementById(
-      "customerNote"
-    ).value = "";
-
-
-    selectedChannel =
-      "whatsapp";
+    activeFilter =
+      button.dataset.filter;
 
 
     document
-      .querySelectorAll(
-        "#socialChoice button"
-      )
-      .forEach(button => {
+      .querySelectorAll(".filter")
+      .forEach((item) => {
 
-        button.classList.toggle(
-          "active",
-          button.dataset.channel ===
-          selectedChannel
-        );
+        item.classList.remove("active");
 
       });
 
 
-    updateTotal();
+    button.classList.add("active");
 
 
-    modalWrap.classList.add("show");
-
-    modalWrap.setAttribute(
-      "aria-hidden",
-      "false"
-    );
+    renderProducts();
 
   }
+);
 
 
-  /* CLOSE MODAL */
+/* =========================
+   SEARCH
+========================= */
 
-  function closeModal() {
-
-    modalWrap.classList.remove("show");
-
-    modalWrap.setAttribute(
-      "aria-hidden",
-      "true"
-    );
-
-  }
+searchInput.addEventListener(
+  "input",
+  renderProducts
+);
 
 
-  /* PRODUCT BUTTON */
+/* =========================
+   MODAL
+========================= */
 
-  document
-    .querySelectorAll("[data-open-product]")
-    .forEach(button => {
+const modalWrap =
+  document.getElementById("modalWrap");
 
-      button.addEventListener(
-        "click",
-        () =>
-          openModal(
-            button.closest(".product")
-          )
-      );
+const quantity =
+  document.getElementById("quantity");
 
-    });
+const modalTotal =
+  document.getElementById("modalTotal");
+
+let selectedProduct = null;
 
 
-  /* QUANTITY */
+/* =========================
+   UPDATE TOTAL
+========================= */
 
-  document
-    .getElementById("minusQty")
-    .addEventListener(
-      "click",
-      () => {
+function updateTotal() {
 
-        quantity.value =
-          Math.max(
-            1,
-            Number(quantity.value || 1) - 1
-          );
+  if (!selectedProduct) return;
 
-        updateTotal();
 
-      }
+  const qty =
+    Math.max(
+      1,
+      Math.min(
+        99,
+        Number(quantity.value) || 1
+      )
     );
 
 
-  document
-    .getElementById("plusQty")
-    .addEventListener(
-      "click",
-      () => {
-
-        quantity.value =
-          Math.min(
-            99,
-            Number(quantity.value || 1) + 1
-          );
-
-        updateTotal();
-
-      }
-    );
+  quantity.value = qty;
 
 
-  quantity.addEventListener(
-    "input",
-    updateTotal
+  modalTotal.textContent =
+    (
+      Number(selectedProduct.price) *
+      qty
+    ).toLocaleString() + " AFN";
+}
+
+
+/* =========================
+   OPEN MODAL
+========================= */
+
+function openModal(card) {
+
+  selectedProduct =
+    card.dataset;
+
+
+  document.getElementById(
+    "modalIcon"
+  ).textContent =
+    selectedProduct.icon;
+
+
+  document.getElementById(
+    "modalTitle"
+  ).textContent =
+    selectedProduct.name;
+
+
+  document.getElementById(
+    "modalDescription"
+  ).textContent =
+    selectedProduct.description;
+
+
+  /* RESET FORM */
+
+  quantity.value = 1;
+
+
+  document.getElementById(
+    "customerName"
+  ).value = "";
+
+
+  document.getElementById(
+    "customerPhone"
+  ).value = "";
+
+
+  document.getElementById(
+    "productSize"
+  ).value = "";
+
+
+  document.getElementById(
+    "productColor"
+  ).value = "";
+
+
+  document.getElementById(
+    "deliveryAddress"
+  ).value = "";
+
+
+  document.getElementById(
+    "customerNote"
+  ).value = "";
+
+
+  updateTotal();
+
+
+  modalWrap.classList.add("show");
+
+
+  modalWrap.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+}
+
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+function closeModal() {
+
+  modalWrap.classList.remove(
+    "show"
   );
 
 
-  /* CLOSE */
-
-  document
-    .getElementById("closeModal")
-    .addEventListener(
-      "click",
-      closeModal
-    );
-
-
-  document
-    .getElementById("cancelModal")
-    .addEventListener(
-      "click",
-      closeModal
-    );
-
-
-  modalWrap.addEventListener(
-    "click",
-    event => {
-
-      if (
-        event.target ===
-        modalWrap
-      ) {
-        closeModal();
-      }
-
-    }
+  modalWrap.setAttribute(
+    "aria-hidden",
+    "true"
   );
 
-
-  document.addEventListener(
-    "keydown",
-    event => {
-
-      if (event.key === "Escape") {
-        closeModal();
-      }
-
-    }
-  );
+}
 
 
-  /* SOCIAL CHANNEL */
+/* =========================
+   PRODUCT BUTTONS
+========================= */
 
-  document
-    .querySelectorAll(
-      "#socialChoice button"
-    )
-    .forEach(button => {
+document
+  .querySelectorAll(
+    "[data-open-product]"
+  )
+  .forEach((button) => {
 
-      button.addEventListener(
-        "click",
-        () => {
-
-          selectedChannel =
-            button.dataset.channel;
-
-
-          document
-            .querySelectorAll(
-              "#socialChoice button"
-            )
-            .forEach(item =>
-              item.classList.toggle(
-                "active",
-                item === button
-              )
-            );
-
-        }
-      );
-
-    });
-
-
-  /* SEND ORDER */
-
-  document
-    .getElementById("sendOrder")
-    .addEventListener(
+    button.addEventListener(
       "click",
       () => {
 
-        if (!selectedProduct) {
-          return;
-        }
-
-
-        const name =
-          document
-            .getElementById("customerName")
-            .value
-            .trim();
-
-
-        const phone =
-          document
-            .getElementById("customerPhone")
-            .value
-            .trim();
-
-
-        /* REQUIRED */
-
-        if (!name || !phone) {
-
-          alert(
-            "Please enter your name and phone number."
-          );
-
-          return;
-        }
-
-
-        const size =
-          document
-            .getElementById("productSize")
-            .value
-            .trim() ||
-          "Not specified";
-
-
-        const color =
-          document
-            .getElementById("productColor")
-            .value
-            .trim() ||
-          "Not specified";
-
-
-        const qty =
-          Math.max(
-            1,
-            Number(quantity.value) || 1
-          );
-
-
-        const address =
-          document
-            .getElementById("deliveryAddress")
-            .value
-            .trim() ||
-          "Not specified";
-
-
-        const note =
-          document
-            .getElementById("customerNote")
-            .value
-            .trim();
-
-
-        const total =
-          Number(selectedProduct.price) *
-          qty;
-
-
-        /* FULL ORDER MESSAGE */
-
-        const orderText =
-`Hello Yahya Shop!
-
-ORDER REQUEST
-
-Product: ${selectedProduct.name}
-
-Price:
-${Number(selectedProduct.price).toLocaleString()} AFN
-
-Quantity:
-${qty}
-
-Total:
-${total.toLocaleString()} AFN
-
-Size:
-${size}
-
-Color:
-${color}
-
-Customer name:
-${name}
-
-Phone:
-${phone}
-
-Delivery address:
-${address}
-
-Other notes:
-${note || "None"}`;
-
-
-        const message =
-          encodeURIComponent(orderText);
-
-
-        /* CONTACT LINKS */
-
-        const links = {
-
-          whatsapp:
-            `https://wa.me/93705295884?text=${message}`,
-
-        };
-
-
-        /* WHATSAPP */
-
-        if (
-          selectedChannel ===
-          "whatsapp"
-        ) {
-
-          window.location.href =
-            links.whatsapp;
-
-          closeModal();
-
-          return;
-        }
-
-
-        window.open(
-          links[selectedChannel],
-          "_blank"
+        openModal(
+          button.closest(".product")
         );
 
-
-        setTimeout(
-          () => {
-
-            alert(
-              `Your full order is ready.
-
-${label} opened.
-
-Copy/paste this message into the chat:
-
-${orderText}`
-            );
-
-          },
-          300
-        );
-
-
-        closeModal();
-
       }
     );
 
-
-  /* DARK MODE */
-
-  const themeBtn =
-    document.getElementById(
-      "themeBtn"
-    );
+  });
 
 
-  let dark = false;
+/* =========================
+   MINUS QUANTITY
+========================= */
 
-
-  themeBtn.addEventListener(
+document
+  .getElementById("minusQty")
+  .addEventListener(
     "click",
     () => {
 
-      dark = !dark;
+      quantity.value =
+        Math.max(
+          1,
+          Number(quantity.value || 1) - 1
+        );
 
-      document.documentElement.style
-        .colorScheme =
-        dark
-          ? "dark"
-          : "light";
+
+      updateTotal();
 
     }
   );
 
 
-  /* INITIAL LOAD */
+/* =========================
+   PLUS QUANTITY
+========================= */
 
-  renderProducts();
+document
+  .getElementById("plusQty")
+  .addEventListener(
+    "click",
+    () => {
+
+      quantity.value =
+        Math.min(
+          99,
+          Number(quantity.value || 1) + 1
+        );
+
+
+      updateTotal();
+
+    }
+  );
+
+
+/* =========================
+   QUANTITY INPUT
+========================= */
+
+quantity.addEventListener(
+  "input",
+  updateTotal
+);
+
+
+/* =========================
+   CLOSE BUTTON
+========================= */
+
+document
+  .getElementById("closeModal")
+  .addEventListener(
+    "click",
+    closeModal
+  );
+
+
+document
+  .getElementById("cancelModal")
+  .addEventListener(
+    "click",
+    closeModal
+  );
+
+
+/* =========================
+   CLOSE OUTSIDE MODAL
+========================= */
+
+modalWrap.addEventListener(
+  "click",
+  (event) => {
+
+    if (
+      event.target === modalWrap
+    ) {
+
+      closeModal();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   ESCAPE KEY
+========================= */
+
+document.addEventListener(
+  "keydown",
+  (event) => {
+
+    if (event.key === "Escape") {
+
+      closeModal();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   SEND ORDER TO WHATSAPP
+========================= */
+
+document
+  .getElementById("sendOrder")
+  .addEventListener(
+    "click",
+    () => {
+
+      if (!selectedProduct) {
+        return;
+      }
+
+
+      /* NAME */
+
+      const name =
+        document
+          .getElementById("customerName")
+          .value
+          .trim();
+
+
+      /* PHONE */
+
+      const phone =
+        document
+          .getElementById("customerPhone")
+          .value
+          .trim();
+
+
+      /* REQUIRED */
+
+      if (!name || !phone) {
+
+        alert(
+          "Please enter your name and phone number."
+        );
+
+        return;
+      }
+
+
+      /* SIZE */
+
+      const size =
+        document
+          .getElementById("productSize")
+          .value
+          .trim() ||
+        "Not specified";
+
+
+      /* COLOR / DESIGN */
+
+      const color =
+        document
+          .getElementById("productColor")
+          .value
+          .trim() ||
+        "I will choose from the photos sent on WhatsApp";
+
+
+      /* QUANTITY */
+
+      const qty =
+        Math.max(
+          1,
+          Math.min(
+            99,
+            Number(quantity.value) || 1
+          )
+        );
+
+
+      /* ADDRESS */
+
+      const address =
+        document
+          .getElementById("deliveryAddress")
+          .value
+          .trim() ||
+        "Not specified";
+
+
+      /* NOTES */
+
+      const note =
+        document
+          .getElementById("customerNote")
+          .value
+          .trim();
+
+
+      /* TOTAL */
+
+      const total =
+        Number(selectedProduct.price) *
+        qty;
+
+
+      /* =========================
+         WHATSAPP ORDER MESSAGE
+      ========================== */
+
+      const orderText =
+`Hello Yahya Online Mart!
+
+🛍️ ORDER REQUEST
+
+📦 Product:
+${selectedProduct.name}
+
+💰 Price:
+${Number(
+  selectedProduct.price
+).toLocaleString()} AFN
+
+🔢 Quantity:
+${qty}
+
+💵 Total:
+${total.toLocaleString()} AFN
+
+📏 Size:
+${size}
+
+🎨 Color / Design:
+${color}
+
+👤 Customer Name:
+${name}
+
+📱 Phone:
+${phone}
+
+📍 Delivery Address:
+${address}
+
+📝 Other Notes:
+${note || "None"}
+
+📸 I understand that the available product colors/designs will be sent to me on WhatsApp so I can choose the exact one.`;
+
+
+      /* =========================
+         WHATSAPP NUMBER
+      ========================== */
+
+      const whatsappNumber =
+        "93705295884";
+
+
+      /* =========================
+         WHATSAPP URL
+      ========================== */
+
+      const whatsappLink =
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+          orderText
+        )}`;
+
+
+      /* =========================
+         OPEN WHATSAPP
+      ========================== */
+
+      window.location.href =
+        whatsappLink;
+
+
+      closeModal();
+
+    }
+  );
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+const themeBtn =
+  document.getElementById("themeBtn");
+
+let dark = false;
+
+
+themeBtn.addEventListener(
+  "click",
+  () => {
+
+    dark = !dark;
+
+
+    document.documentElement.style
+      .colorScheme =
+      dark
+        ? "dark"
+        : "light";
+
+  }
+);
+
+
+/* =========================
+   INITIAL LOAD
+========================= */
+
+renderProducts();
