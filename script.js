@@ -527,20 +527,6 @@ ${note || "None"}`;
           whatsapp:
             `https://wa.me/93705295884?text=${message}`,
 
-          email:
-            `mailto:yahiaanawabi86@gmail.com?subject=${encodeURIComponent(
-              "Order: " +
-              selectedProduct.name
-            )}&body=${message}`,
-
-          /* Replace these with your real pages */
-
-          facebook:
-            "https://www.facebook.com/yahyanawabi45?mibextid=wwXlfr",
-
-          tiktok:
-            "https://www.tiktok.com/@yahyanawabi45?_r=1&_ZS-9A6pEhkwbz8"
-
         };
 
 
@@ -558,30 +544,6 @@ ${note || "None"}`;
 
           return;
         }
-
-
-        /* EMAIL */
-
-        if (
-          selectedChannel ===
-          "email"
-        ) {
-
-          window.location.href =
-            links.email;
-
-          closeModal();
-
-          return;
-        }
-
-
-        /* FACEBOOK / TIKTOK */
-
-        const label =
-          selectedChannel === "facebook"
-            ? "Facebook/Messenger"
-            : "TikTok";
 
 
         window.open(
