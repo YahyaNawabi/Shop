@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Yahya Shop - Online Store" />
+  <link rel="stylesheet" href="style.css">
+  <title>Yahya Shop | Online Store</title>
+</head>
+
+<body>
+
+<div class="app-root">
+
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="container nav-inner">
+
+      <a class="logo" href="#top">
+        <span class="logo-mark">YS</span>
+        <span>Yahya Shop</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#products">Products</a>
+        <a href="#how">How to Order</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="theme" id="themeBtn">
+        ☀️ / 🌙
+      </button>
+
+    </div>
+  </header>
+
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+
+      <div class="container hero-grid">
+
+        <div>
+
+          <span class="eyebrow">
+            ONLINE SHOP • ORDER FROM YOUR PHONE
+          </span>
+
+          <h1>
+            Find it. Choose it. Order it.
+          </h1>
+
+          <p>
+            Welcome to Yahya Shop.
+            Browse products, open any item for details,
+            choose how you want to contact me,
+            and send your order directly.
+          </p>
+
+          <div class="hero-actions">
+
+            <a class="btn btn-primary"
+               href="#products">
+              Shop Products
+            </a>
+
+            <a class="btn"
+               href="https://wa.me/93705295884?text=Hello%20Yahya%20Shop%2C%20I%20want%20more%20information."
+               target="_blank">
+              Message on WhatsApp
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="hero-card">
+
+          <div class="hero-card-head">
+
+            <h3>
+              Quick shop info
+            </h3>
+
+            <span class="online">
+              ● Online
+            </span>
+
+          </div>
+
+          <div class="mini-grid">
+
+            <div class="mini">
+              <strong>6+</strong>
+              <span>Sample products</span>
+            </div>
+
+            <div class="mini">
+              <strong>24/7</strong>
+              <span>Order requests</span>
+            </div>
+
+            <div class="mini">
+              <strong>4</strong>
+              <span>Contact choices</span>
+            </div>
+
+            <div class="mini">
+              <strong>AFN</strong>
+              <span>Prices in Afghan Afghani</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PRODUCTS -->
+    <section class="section" id="products">
+
+      <div class="container">
+
+        <div class="section-head">
+
+          <div>
+
+            <h2>
+              Featured products
+            </h2>
+
+            <p class="section-lead">
+              Click a product to choose quantity
+              and your preferred order contact.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- SEARCH + FILTER -->
+        <div class="tools">
+
+          <div class="search">
+
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Search products..."
+              aria-label="Search products"
+            />
+
+          </div>
+
+
+          <div class="filters" id="filters">
+
+            <button class="filter active"
+                    data-filter="all">
+              All
+            </button>
+
+            <button class="filter"
+                    data-filter="fashion">
+              Fashion
+            </button>
+
+            <button class="filter"
+                    data-filter="tech">
+              Tech
+            </button>
+
+            <button class="filter"
+                    data-filter="accessories">
+              Accessories
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- PRODUCT GRID -->
+        <div class="products" id="productGrid">
+
+
+          <!-- PRODUCT 1 -->
+          <article
+            class="product"
+            data-category="tech"
+            data-name="Smart Watch"
+            data-price="1800"
+            data-icon="⌚"
+            data-description="Everyday smart watch with fitness tracking and notifications."
+          >
+
+            <div class="product-img">
+              ⌚
+            </div>
+
+            <div class="product-body">
+
+              <div class="product-top">
+
+                <h3>
+                  Smart Watch
+                </h3>
+
+                <span class="price">
+                  1,800 AFN
+                </span>
+
+              </div>
+
+              <p>
+                Fitness tracking,
+                notifications and modern design.
+              </p>
+
+              <div class="product-actions">
+
+                <button
+                  class="details"
+                  data-open-product
+                >
+                  View & Order
+                </button>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- PRODUCT 2 -->
+          <article
+            class="product"
+            data-category="tech"
+            data-name="Wireless Earbuds"
+            data-price="1200"
+            data-icon="🎧"
+            data-description="Compact wireless earbuds for music, calls and everyday use."
+          >
+
+            <div class="product-img">
+              🎧
+            </div>
+
+            <div class="product-body">
+
+              <div class="product-top">
+
+                <h3>
+                  Wireless Earbuds
+                </h3>
+
+                <span class="price">
+                  1,200 AFN
+                </span>
+
+              </div>
+
+              <p>
+                Compact, easy to carry,
+                and perfect for daily use.
+              </p>
+
+              <div class="product-actions">
+
+                <button
+                  class="details"
+                  data-open-product
+                >
+                  View & Order
+                </button>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- PRODUCT 3 -->
+          <article
+            class="product"
+            data-category="fashion"
+            data-name="Classic Hoodie"
+            data-price="950"
+            data-icon="🧥"
+            data-description="Comfortable everyday hoodie with a clean modern look."
+          >
+
+            <div class="product-img">
+              🧥
+            </div>
+
+            <div class="product-body">
+
+              <div class="product-top">
+
+                <h3>
+                  Classic Hoodie
+                </h3>
+
+                <span class="price">
+                  950 AFN
+                </span>
+
+              </div>
+
+              <p>
+                Comfortable everyday style
+                for cool weather.
+              </p>
+
+              <div class="product-actions">
+
+                <button
+                  class="details"
+                  data-open-product
+                >
+                  View & Order
+                </button>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- PRODUCT 4 -->
+          <article
+            class="product"
+            data-category="fashion"
+            data-name="Casual Sneakers"
+            data-price="1600"
+            data-icon="👟"
+            data-description="Lightweight casual sneakers for walking and everyday wear."
+          >
+
+            <div class="product-img">
+              👟
+            </div>
+
+            <div class="product-body">
+
+              <div class="product-top">
+
+                <h3>
+                  Casual Sneakers
+                </h3>
+
+                <span class="price">
+                  1,600 AFN
+                </span>
+
+              </div>
+
+              <p>
+                Lightweight shoes designed
+                for everyday comfort.
+              </p>
+
+              <div class="product-actions">
+
+                <button
+                  class="details"
+                  data-open-product
+                >
+                  View & Order
+                </button>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- PRODUCT 5 -->
+          <article
+            class="product"
+            data-category="accessories"
+            data-name="Travel Backpack"
+            data-price="1100"
+            data-icon="🎒"
+            data-description="Useful backpack with space for study, travel and daily essentials."
+          >
+
+            <div class="product-img">
+              🎒
+            </div>
+
+            <div class="product-body">
+
+              <div class="product-top">
+
+                <h3>
+                  Travel Backpack
+                </h3>
+
+                <span class="price">
+                  1,100 AFN
+                </span>
+
+              </div>
+
+              <p>
+                Practical storage for school,
+                work, and travel.
+              </p>
+
+              <div class="product-actions">
+
+                <button
+                  class="details"
+                  data-open-product
+                >
+                  View & Order
+                </button>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- PRODUCT 6 -->
+          <article
+            class="product"
+            data-category="accessories"
+            data-name="Phone Stand"
+            data-price="450"
+            data-icon="📱"
+            data-description="Foldable phone stand for desk use, study and watching videos."
+          >
+
+            <div class="product-img">
+              📱
+            </div>
+
+            <div class="product-body">
+
+              <div class="product-top">
+
+                <h3>
+                  Phone Stand
+                </h3>
+
+                <span class="price">
+                  450 AFN
+                </span>
+
+              </div>
+
+              <p>
+                Foldable stand for study,
+                calls and videos.
+              </p>
+
+              <div class="product-actions">
+
+                <button
+                  class="details"
+                  data-open-product
+                >
+                  View & Order
+                </button>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+
+        <div class="empty" id="emptyState">
+          No products match your search.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- HOW TO ORDER -->
+    <section class="section" id="how">
+
+      <div class="container">
+
+        <div class="section-head">
+
+          <div>
+
+            <h2>
+              How to order
+            </h2>
+
+            <p class="section-lead">
+              No account or complicated checkout is required.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="info-grid">
+
+          <div class="info-card">
+
+            <strong>
+              1. Choose a product
+            </strong>
+
+            <span>
+              Open any product and select the
+              quantity you want.
+            </span>
+
+          </div>
+
+
+          <div class="info-card">
+
+            <strong>
+              2. Pick a contact method
+            </strong>
+
+            <span>
+              Choose WhatsApp, Facebook,
+              TikTok, or email.
+            </span>
+
+          </div>
+
+
+          <div class="info-card">
+
+            <strong>
+              3. Send the request
+            </strong>
+
+            <span>
+              The website prepares your
+              product, quantity, price,
+              and customer information.
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+
+      <div class="container">
+
+        <div class="section-head">
+
+          <div>
+
+            <h2>
+              Contact Yahya Shop
+            </h2>
+
+            <p class="section-lead">
+              Use these details for general
+              questions and support.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="info-grid">
+
+          <a
+            class="info-card"
+            href="https://wa.me/93705295884"
+            target="_blank"
+          >
+
+            <strong>
+              WhatsApp
+            </strong>
+
+            <span>
+              0705295884
+            </span>
+
+          </a>
+
+
+          <a
+            class="info-card"
+            href="mailto:yahiaanawabi86@gmail.com"
+          >
+
+            <strong>
+              Email
+            </strong>
+
+            <span>
+              yahiaanawabi86@gmail.com
+            </span>
+
+          </a>
+
+
+          <a
+            class="info-card"
+            href="tel:0705295884"
+          >
+
+            <strong>
+              Phone
+            </strong>
+
+            <span>
+              0705295884
+            </span>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container">
+
+      © 2026 Yahya Shop •
+      Online product showcase and direct ordering.
+
+    </div>
+
+  </footer>
+
+</div>
+
+
+<!-- ORDER MODAL -->
+
+<div
+  class="modal-wrap"
+  id="modalWrap"
+  aria-hidden="true"
+>
+
+  <div
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+  >
+
+    <div class="modal-header">
+
+      <div
+        class="modal-icon"
+        id="modalIcon"
+      >
+        📦
+      </div>
+
+      <div>
+
+        <h3 id="modalTitle">
+          Product
+        </h3>
+
+        <p id="modalDescription">
+          Product description
+        </p>
+
+      </div>
+
+      <button
+        class="close"
+        id="closeModal"
+        type="button"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="modal-body">
+
+
+      <!-- NAME -->
+
+      <div class="field">
+
+        <label for="customerName">
+          Your name
+        </label>
+
+        <input
+          id="customerName"
+          type="text"
+          placeholder="Enter your name"
+          required
+        />
+
+      </div>
+
+
+      <!-- PHONE -->
+
+      <div class="field">
+
+        <label for="customerPhone">
+          Phone number
+        </label>
+
+        <input
+          id="customerPhone"
+          type="tel"
+          placeholder="07xxxxxxxx"
+          required
+        />
+
+      </div>
+
+
+      <!-- SIZE -->
+
+      <div class="field">
+
+        <label for="productSize">
+          Size
+        </label>
+
+        <input
+          id="productSize"
+          type="text"
+          placeholder="Example: S, M, L, XL or Not applicable"
+        />
+
+      </div>
+
+
+      <!-- COLOR -->
+
+      <div class="field">
+
+        <label for="productColor">
+          Color
+        </label>
+
+        <input
+          id="productColor"
+          type="text"
+          placeholder="Preferred color"
+        />
+
+      </div>
+
+
+      <!-- QUANTITY -->
+
+      <div class="field">
+
+        <label>
+          Quantity
+        </label>
+
+        <div class="qty">
+
+          <button
+            id="minusQty"
+            type="button"
+          >
+            −
+          </button>
+
+          <input
+            id="quantity"
+            type="number"
+            value="1"
+            min="1"
+            max="99"
+          />
+
+          <button
+            id="plusQty"
+            type="button"
+          >
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- ADDRESS -->
+
+      <div class="field">
+
+        <label for="deliveryAddress">
+          Delivery address
+        </label>
+
+        <textarea
+          id="deliveryAddress"
+          placeholder="City, area, street, landmark..."
+        ></textarea>
+
+      </div>
+
+
+      <!-- NOTES -->
+
+      <div class="field">
+
+        <label for="customerNote">
+          Other notes
+        </label>
+
+        <textarea
+          id="customerNote"
+          placeholder="Any other question or request..."
+        ></textarea>
+
+      </div>
+
+
+      <!-- TOTAL -->
+
+      <div class="total">
+
+        <span>
+          Total
+        </span>
+
+        <span id="modalTotal">
+          0 AFN
+        </span>
+
+      </div>
+
+
+      <!-- SOCIAL CHOICE -->
+
+      <div class="field">
+
+        <label>
+          Where would you like to order
+          or ask for more info?
+        </label>
+
+        <div
+          class="social-choice"
+          id="socialChoice"
+        >
+
+
+          <!-- WHATSAPP -->
+
+          <button
+            type="button"
+            data-channel="whatsapp"
+            class="active"
+          >
+
+            💬 WhatsApp
+
+            <small>
+              Fastest option
+            </small>
+
+          </button>
+
+
+          <!-- FACEBOOK -->
+
+          <button
+            type="button"
+            data-channel="facebook"
+          >
+
+            f Facebook
+
+            <small>
+              Your Facebook page
+            </small>
+
+          </button>
+
+
+          <!-- TIKTOK -->
+
+          <button
+            type="button"
+            data-channel="tiktok"
+          >
+
+            ♪ TikTok
+
+            <small>
+              Your TikTok account
+            </small>
+
+          </button>
+
+
+          <!-- EMAIL -->
+
+          <button
+            type="button"
+            data-channel="email"
+          >
+
+            ✉ Email
+
+            <small>
+              Send an email
+            </small>
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- BUTTONS -->
+
+      <div class="modal-actions">
+
+        <button
+          class="btn"
+          id="cancelModal"
+          type="button"
+        >
+          Cancel
+        </button>
+
+        <button
+          class="btn btn-primary"
+          id="sendOrder"
+          type="button"
+        >
+          Continue to Order
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script src="./script.js"></script>
+
+</body>
+</html>
